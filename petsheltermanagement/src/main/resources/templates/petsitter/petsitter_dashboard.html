@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="petsitter/base::layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Pet Sitter Profile</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+	<section class="py-5">
+		<div class="container text-center">
+			<img th:src="@{'/img/'+${petSitter.imageUrl}}" class="my_profile_picture" alt="Pet Sitter's Image" />
+			<h1 class="text-center" th:text="'Welcome, ' + ${petSitter.name}"></h1>
+
+			<p class="lead text-center">Welcome to Pet Shelter Management</p>
+		</div>
+
+		<div class="row justify-content-center my-5">
+			<div class="col-md-8 text-center">
+				<p>As a pet sitter, I am passionate about taking care of your beloved pets. Your pet's safety and happiness are my top priorities, and I provide a comfortable and loving environment for them when you're away.</p>
+			</div>
+		</div>
+
+		<div class="text-center">
+			<h2>Why Choose Me?</h2>
+		</div>
+
+		<div class="row text-center my-4">
+			<div class="col-md-4">
+				<div class="feature-box">
+					<i class="fas fa-paw fa-3x"></i>
+					<h3>Pet-Friendly</h3>
+					<p>I provide a pet-friendly environment that ensures your pets feel right at home.</p>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="feature-box">
+					<i class="fas fa-calendar-alt fa-3x"></i>
+					<h3>Flexible Scheduling</h3>
+					<p>My booking system is flexible, making it easy for you to schedule your pet's stay.</p>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="feature-box">
+					<i class="fas fa-heart fa-3x"></i>
+					<h3>Caring Service</h3>
+					<p>I am dedicated to ensuring your pet's well-being and happiness during their stay with me.</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="text-center my-5">
+			<h2>Contact Me</h2>
+			<p>If you have any questions or need assistance, feel free to reach out. Your pet's happiness is my priority.</p>
+			<a href="contact.html" class="btn btn-primary">Contact Me</a>
+		</div>
+		
+		<script>
+			$(document).ready(() => {
+				$(".items").removeClass("active");
+				$("#Dashboard-link").addClass("active")
+			})
+		</script>
+	</section>
+</body>
+
+</html>

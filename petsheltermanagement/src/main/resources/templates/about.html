@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title>About Us - Pet Shelter Management</title>
+</head>
+<body>
+	<section class="about-banner pb-5">
+		<div class="container">
+			<h1 class="display-4 text-center mt-3 py-5">About Us</h1>
+			<div class="row">
+				<div class="col-md-6 d-flex align-items-center">
+					<p>Welcome to Pet Shelter Management, your trusted platform for ensuring the well-being of your beloved pets when you're away. We're dedicated to providing a safe and caring environment for your furry family members.</p>
+				</div>
+				<div class="col-md-6">
+					<img th:src="@{/img/aboutPet1.jpeg}" alt="Pet Image 1" class="img-fluid rounded-circle">
+				</div>
+			</div>
+
+			<h2 class="mt-4">Our Mission</h2>
+			<p>At Pet Shelter Management, our mission is to connect pet owners with responsible and passionate pet sitters who will go the extra mile to ensure your pets are happy, healthy, and safe during your absence. We understand the bond you share with your pets, and our goal is to make your time apart as stress-free as possible.</p>
+
+			<div class="row mt-4">
+				<div class="col-md-6">
+					<h2>Why Choose Us?</h2>
+					<p>We stand out in the pet care industry for several reasons:</p>
+					<ul>
+						<li><strong>Quality Care:</strong> We believe in delivering top-quality care for your pets. Our community of pet sitters is rigorously vetted to ensure they meet our high standards.</li><br />
+						<li><strong>Convenience:</strong> We prioritize convenience, making it simple for you to find a suitable pet sitter, book their services, and stay updated on your pet's well-being.</li>
+					</ul>
+				</div>
+				<div class="col-md-6">
+					<img th:src="@{/img/aboutPet2.jpeg}" alt="Pet Image 2" class="img-fluid rounded">
+				</div>
+			</div>
+
+			<h2 class="mt-4">How It Works</h2>
+			<p>Our platform is designed to make the pet-sitting process smooth and reliable:</p>
+			<ol>
+				<li><strong>Create Your Pet's Profile:</strong> Start by adding your pet's details, including age, breed, gender, and any specific needs. This helps pet sitters get to know your pet better.</li><br />
+				<li><strong>Find the Perfect Sitter:</strong> Explore profiles of experienced pet sitters, review their services, rates, and availability. Choose the sitter that best suits your requirements.</li>
+			</ol>
+
+			<div class="row mt-4">
+				<div class="col-md-6  m-auto">
+					<li class="text-center"><strong>Book a Sitter:</strong> Request a sitting slot that fits your schedule. The pet sitter can accept or deny your request based on their availability.</li><br /><br />
+					<li class="text-center"><strong>Stay Connected:</strong> Receive regular updates from your chosen sitter. Verify your pet's safety and well-being through photos and messages.</li> 
+				</div>
+				<div class="col-md-6">
+					<img th:src="@{/img/aboutPet3.jpeg}" alt="Pet Image 3" class="img-fluid">
+				</div>
+			</div>
+
+			<div class="row mt-4">
+				<div class="col-md-6 m-auto">
+					<li><strong>Contact the Sitter:</strong> Feel free to contact your pet sitter for updates, questions, or simply to check on your pet.</li><br /><br />
+					<li><strong>Join Our Community:</strong> We invite you to become part of our growing community of pet owners and pet sitters who share a deep love for animals.</li>
+				</div>
+				<div class="col-md-6">
+					<img th:src="@{/img/aboutPet4.jpeg}" alt="Pet Image 4" class="img-fluid rounded-circle">
+				</div>
+			</div>
+
+			<p class="mt-4">Thank you for choosing Pet Shelter Management to ensure your pet's happiness and comfort. We look forward to being a part of your pet's story.</p>
+		</div>
+	</section>
+	<!-- Add Bootstrap JS scripts and your custom scripts here -->
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8">
+	<title>User Bookings</title>
+</head>
+
+<body>
+	<section>
+		<div class="container">
+			<h1>User Bookings</h1>
+
+			<table class="table table-striped table-bordered table-light">
+				<thead>
+					<tr>
+						<th scope="col">Booking ID</th>
+						<th scope="col">Pet</th>
+						<th scope="col">Pet Sitter</th>
+						<th scope="col">Start Time</th>
+						<th scope="col">End Time</th>
+						<th scope="col">Status</th>
+						<th scope="col">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr scope="row" th:each="booking : ${bookings}">
+						<td>PSM2023<span th:text="${booking.id}"></td>
+						<td th:text="${booking.pet.name}"></td>
+						<td th:text="${booking.petSitter.name}"></td>
+						<td th:text="${booking.startTime}"></td>
+						<td th:text="${booking.endTime}"></td>
+						<td th:text="${booking.status}"></td>
+
+						<td>
+							<a th:href="@{'/user/delete_booking/' + ${booking.id}}" class="btn btn-danger">Delete</a>
+						</td>
+					</tr>
+			</table>
+
+			<a th:href="@{/user/create_booking}" class="btn bg-primary btn-lg text-white">Create Booking</a>
+		</div>
+		<script>
+			$(document).ready(()=>{
+				$(".items").removeClass("active");
+				$("#Booking-link").addClass("active")
+			})
+		</script>
+	</section>
+</body>
+
+</html>

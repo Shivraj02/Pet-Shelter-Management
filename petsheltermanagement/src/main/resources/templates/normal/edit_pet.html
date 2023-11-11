@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Pet</title>
+</head>
+<body>
+    <section>
+        <div class="container">
+            <h1>Edit Pet</h1>
+            
+            <form th:object="${pet}" th:action="@{'/user/edit_pet/' + ${pet.id}}" method="post">
+                <input type="hidden" th:field="*{id}" />
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" th:field="*{name}" required="required" />
+                </div>
+                <div class="form-group">
+                    <label for="age">Age:</label>
+                    <input type="number" class="form-control" id="age" th:field="*{age}" required="required" />
+                </div>
+                <div class="form-group">
+                    <label for="breed">Breed:</label>
+                    <input type="text" class="form-control" id="breed" th:field="*{breed}" required="required" />
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender:</label>
+                    <select class="form-control" id="gender" th:field="*{gender}" required="required">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="medicalNeeds">Medical Needs:</label>
+                    <input type="text" class="form-control" id="medicalNeeds" th:field="*{medicalNeeds}" />
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn bg-primary btn-lg text-white">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</body>
+</html>

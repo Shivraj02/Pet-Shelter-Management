@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="petsitter/base::layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Pet Sitter Profile</title>
+</head>
+
+<body>
+	<section>
+		<div class="card">
+			<div class="card-body">
+				<div class="container text-center">
+					<img th:src="@{'/img/'+${petSitter.imageUrl}}" style="height: 200px; width: 200px;"
+						class="my_profile_picture" alt="" />
+				</div>
+				<h1 class="text-center" th:text="${petSitter.name}"></h1>
+				<table class="table text-center">
+					<thead>
+						<tr>
+							<th scope="col">Pet Sitter ID</th>
+							<th scope="col">PSMUSER<span th:text="${petSitter.id}"></span></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">Email</th>
+							<td th:text="${petSitter.email}"></td>
+						</tr>
+						<tr>
+							<th scope="row">Role</th>
+							<td th:text="${petSitter.role}"></td>
+						</tr>
+						<tr>
+							<th scope="row">Account Active</th>
+							<td th:text="${petSitter.enabled}"></td>
+						</tr>
+						<tr>
+							<th scope="row">Experience</th>
+							<td th:text="${petSitter.experience}"></td>
+						</tr>
+						<!-- Add more rows for additional pet sitter information -->
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
+		<script>
+			$(document).ready(()=>{
+				$(".items").removeClass("active");
+				$("#Profile-link").addClass("active")
+			})
+		</script>
+	</section>
+</body>
+
+</html>

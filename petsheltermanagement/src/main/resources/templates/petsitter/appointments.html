@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="petsitter/base::layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8">
+	<title>User Bookings</title>
+</head>
+
+<body>
+	<section>
+		<div class="container">
+			<h1>Appointments</h1>
+
+			<table class="table table-striped table-bordered table-light">
+				<thead>
+					<tr>
+						<th scope="col">Booking ID</th>
+						<th scope="col">User Name</th>
+						<th scope="col">Pet</th>
+						<th scope="col">Start Time</th>
+						<th scope="col">End Time</th>
+						<th scope="col">Status</th>
+						<th scope="col">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- Iterate over user appointments -->
+					<tr th:each="booking : ${bookings}" th:if="${booking.status == 'Pending'}">
+						<td th:text="${booking.id}"></td>
+						<td th:text="${booking.user.name}"></td>
+
+						<td th:text="${booking.pet.name}"></td>
+						<td th:text="${booking.startTime}"></td>
+						<td th:text="${booking.endTime}"></td>
+						<td th:text="${booking.status}"></td>
+						<td>
+							<a th:href="@{'/pet_sitter/accept_booking/' + ${booking.id}}"
+								class="btn btn-success accept-booking" data-booking-id="${booking.id}"
+								data-status="Approved" onclick="return confirmAction(this);">Accept
+							</a>
+
+							<a th:href="@{'/pet_sitter/reject_booking/' + ${booking.id}}"
+								class="btn btn-danger reject-booking" data-booking-id="${booking.id}"
+								data-status="Denied" onclick="return confirmAction(this);">Reject
+							</a>
+
+						</td>
+					</tr>
+				</tbody>
+
+			</table>
+
+		</div>
+		<script>
+			function confirmAction(button) {
+				var statusToUpdate = button.getAttribute("data-status");
+				var bookingId = button.getAttribute("data-booking-id");
+				var statusCell = $(button).closest("tr").find(".status");
+
+				if (confirm("Are you sure you want to " + statusToUpdate + " this booking?")) {
+					// Update the status in the table cell
+					statusCell.text(statusToUpdate);
+
+					// Make an Ajax request to update the status on the server
+					$.ajax({
+						type: "POST",  // Adjust HTTP method as needed
+						url: button.getAttribute("href"),
+						data: {status: statusToUpdate},
+						success: function (data) {
+							// Handle success
+							alert("Booking status updated to " + statusToUpdate);
+						},
+						error: function (error) {
+							// Handle errors
+							alert("An error occurred while updating the booking status.");
+						}
+					});
+
+					// Prevent the default link behavior by returning false
+					return false;
+				}
+
+				// If the user clicks "No" in the confirmation dialog, the default link behavior is also prevented.
+				return false;
+			}
+
+			$(document).ready(() => {
+				$(".items").removeClass("active");
+				$("#Appointments-link").addClass("active")
+
+				$(".accept-booking").click(function () {
+					// Find the corresponding status cell
+					var statusCell = $(this).closest("tr").find(".status");
+
+					// Update the status in the table cell
+					statusCell.text("Approved");
+				});
+			})
+		</script>
+	</section>
+</body>
+
+</html>

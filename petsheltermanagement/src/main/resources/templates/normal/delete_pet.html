@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Pet</title>
+</head>
+<body>
+    <section>
+        <div class="container">
+            <h1>Delete Pet</h1>
+            <p>Are you sure you want to delete this pet?</p>
+            <p>Name: <span th:text="${pet.name}"></span></p>
+            <p>Age: <span th:text="${pet.age}"></span></p>
+            <p>Breed: <span th:text="${pet.breed}"></span></p>
+            <p>Gender: <span th:text="${pet.gender}"></span></p>
+            <p>Medical Needs: <span th:text="${pet.medicalNeeds}"></span></p>
+            <form th:action="@{'/user/delete_pet/' + ${pet.id}}" method="post">
+                <div class="text-center">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <a th:href="@{/user/MyPets}" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </section>
+</body>
+</html>

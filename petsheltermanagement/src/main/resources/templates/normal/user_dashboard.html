@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Welcome to Pet Shelter Management</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+	<section class="py-5">
+		<div class="container text-center">
+			<img th:src="@{'/img/'+${user.imageUrl}}" class="my_profile_picture" alt="User's Pet" />
+			<h1 class="text-center" th:text="'Welcome, ' + ${user.name}"></h1>
+
+			<p class="lead text-center">Welcome to Pet Shelter Management</p>
+		</div>
+
+		<div class="row justify-content-center my-5">
+			<div class="col-md-8 text-center">
+				<p>At Pet Shelter Management, we understand that your pets are family. Our mission is to provide a comfortable and loving environment for your furry friends when you're away. We are passionate about pet care, and your pet's safety and happiness are our top priorities.</p>
+			</div>
+		</div>
+
+		<div class="text-center">
+			<h2>Why Choose Us?</h2>
+		</div>
+
+		<div class="row text-center my-4">
+			<div class="col-md-4">
+				<div class="feature-box">
+					<i class="fas fa-paw fa-3x"></i>
+					<h3>Pet-Friendly</h3>
+					<p>We provide a pet-friendly environment that ensures your pets feel right at home.</p>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="feature-box">
+					<i class="fas fa-calendar-alt fa-3x"></i>
+					<h3>Easy Booking</h3>
+					<p>Our booking system is user-friendly, making it easy for you to schedule your pet's stay.</p>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="feature-box">
+					<i class="fas fa-heart fa-3x"></i>
+					<h3>Caring Staff</h3>
+					<p>Our dedicated and caring staff ensures your pet's well-being and happiness.</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="text-center my-5">
+			<h2>Contact Us</h2>
+			<p>If you have any questions or need assistance, feel free to reach out. Your pet's happiness is our priority.</p>
+			<a href="contact.html" class="btn btn-primary">Contact Us</a>
+		</div>
+		
+		<script>
+			$(document).ready(()=>{
+				$(".items").removeClass("active");
+				$("#home-link").addClass("active")
+			})
+		</script>
+	</section>
+
+</body>
+
+</html>

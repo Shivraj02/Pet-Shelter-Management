@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Welcome to Pet Shelter Management</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+	<section class="py-5">
+
+		<div class="card">
+			<div class="card-body">
+				<div class="container">
+					<div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+						<p class="text-center" th:text="${session.message.content}"></p>
+						<th:block th:text="${@sessionHelper.removeMessageFromSession()}"></th:block>
+					</div>
+					<h2 class="mb-4">Change Password</h2>
+					<form th:action="@{/user/change_password}" method="post">
+						<div class="form-group">
+							<label for="currentPassword">Current Password</label>
+							<input name="oldPassword" type="password" class="form-control" id="oldPassword"
+								placeholder="Enter your current password">
+						</div>
+						<div class="form-group">
+							<label for="newPassword">New Password</label>
+							<input name="newPassword" type="password" class="form-control" id="newPassword"
+								placeholder="Enter your new password">
+						</div>
+<!--						<div class="form-group">-->
+<!--							<label for="confirmPassword">Confirm New Password</label>-->
+<!--							<input type="password" class="form-control" id="confirmPassword"-->
+<!--								placeholder="Confirm your new password">-->
+<!--						</div>-->
+						<button type="submit" class="btn btn-success">Change Password</button>
+						<button type="reset" class="btn btn-warning">Reset</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<script>
+			$(document).ready(()=>{
+				$(".items").removeClass("active");
+				$("#settings-link").addClass("active")
+			})
+		</script>
+	</section>
+
+</body>
+
+</html>

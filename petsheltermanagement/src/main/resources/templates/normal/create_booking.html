@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Booking</title>
+</head>
+<body>
+    <section>
+        <div class="container">
+            <h1>Create Booking</h1>
+
+            <form th:object="${booking}" th:action="@{/user/create_booking}" method="post">
+
+                <div class="form-group">
+                    <label for="pet">Select Pet:</label>
+                    <select class="form-control" id="pet" th:field="*{pet.id}" required="required">
+                        <option th:each="pet : ${pets}" th:value="${pet.id}" th:text="${pet.name}"></option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="startTime">Start Time:</label>
+                    <input type="datetime-local" class="form-control" id="startTime" th:field="*{startTime}" required="required" />
+                </div>
+
+                <div class="form-group">
+                    <label for="endTime">End Time:</label>
+                    <input type="datetime-local" class="form-control" id="endTime" th:field="*{endTime}" required="required" />
+                </div>
+
+                <div class="form-group">
+					<label for="petSitter">Select Pet Sitter:</label>
+					<select class="form-control" id="petSitter" name="petSitter.id" required="required">
+						<option value="">Select a Pet Sitter</option>
+						<option th:each="petSitter : ${petSitters}" th:value="${petSitter.id}"
+							th:text="${petSitter.name}"></option>
+					</select>
+
+
+				</div>
+
+
+                <input type="hidden" id="user" name="user.id" th:value="${user.id}" />
+
+
+                <div class="text-center">
+                    <button type="submit" class="btn bg-primary btn-lg text-white">Create Booking</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</body>
+</html>
