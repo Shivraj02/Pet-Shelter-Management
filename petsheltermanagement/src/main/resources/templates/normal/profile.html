@@ -7,14 +7,15 @@
 </head>
 
 <body>
-	<section>
+	<section class="ml-0">
 		<div class="card">
-			
+
 			<div class="card-body">
-				
+
 				<div class="container text-center">
-					<img src="" style="height: 200px; width: 200px;" class="my_profile_picture" th:src="@{'/img/'+${user.imageUrl}}" alt="" />
-				
+					<img src="" style="height: 200px; width: 200px;" class="my_profile_picture"
+						th:src="@{'/img/'+${user.imageUrl}}" alt="" />
+
 				</div>
 				<h1 class="text-center" th:text="${user.name}"></h1>
 				<table class="table text-center">
@@ -22,40 +23,40 @@
 						<tr>
 							<th scope="col">UserId</th>
 							<th scope="col">PSMUSER<span th:text="${user.id}"></span></th>
-							
+
 						</tr>
 					</thead>
 					<tbody>
-						
+
 						<tr>
 							<th scope="row">Email</th>
 							<td><span th:text="${user.email}"></span></td>
-							
+
 						</tr>
 						<tr>
 							<th scope="row">Role</th>
 							<td><span th:text="${user.role}"></td>
-							
+
 						</tr>
 						<tr>
 							<th scope="row">Account Active</th>
 							<td><span th:text="${user.enabled}"></td>
-							
+
 						</tr>
 						<tr>
 							<th scope="row">About You</th>
 							<td><span th:text="${user.about}"></td>
-							
+
 						</tr>
-						<!-- Add more rows for additional user information -->
+
 					</tbody>
 				</table>
 			</div>
-			
+
 		</div>
-		
+
 		<script>
-			$(document).ready(()=>{
+			$(document).ready(() => {
 				$(".items").removeClass("active");
 				$("#Profile-link").addClass("active")
 			})
