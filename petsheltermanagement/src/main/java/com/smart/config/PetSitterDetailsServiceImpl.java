@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.smart.dao.PetSitterRepository;
+import com.smart.Repository.PetSitterRepository;
 import com.smart.entites.PetSitter;
 
 @Service

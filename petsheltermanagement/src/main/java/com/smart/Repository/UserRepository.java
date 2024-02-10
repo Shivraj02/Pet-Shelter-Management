@@ -1,4 +1,4 @@
-package com.smart.dao;
+package com.smart.Repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

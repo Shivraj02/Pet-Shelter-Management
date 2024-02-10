@@ -4,10 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.smart.Repository.BookingRepository;
 import com.smart.entites.Booking;
 import com.smart.entites.PetSitter;
 import com.smart.entites.User;
-import com.smart.dao.BookingRepository;
 
 @Service
 public class BookingService {

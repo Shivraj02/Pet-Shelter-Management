@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.smart.dao.PetSitterRepository;
+import com.smart.Repository.PetSitterRepository;
 import com.smart.entites.PetSitter;
 
 @Service
@@ -29,6 +29,12 @@ public class PetSitterServiceImpl implements PetSitterService {
 
         petSitter.setPassword(passwordEncoder.encode(petSitter.getPassword()));
         return petSitterRepository.save(petSitter);
+    }
+
+    @Override
+    public List<PetSitter> FindAll() {
+        List<PetSitter> all = petSitterRepository.findAll();
+        return all;
     }
 
 }

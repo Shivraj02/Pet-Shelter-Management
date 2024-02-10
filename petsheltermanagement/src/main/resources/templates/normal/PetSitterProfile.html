@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Sitters</title>
+    <!-- Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom styles */
+        .pet-sitter-card {
+            margin: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .pet-sitter-card img {
+            max-width: 100%;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        /* .card-body {
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        } */
+    </style>
+</head>
+
+<body>
+    <section>
+
+        <div class="container mt-5">
+            <h2 class="text-center mt-4 mb-4">Pet Sitters</h2>
+
+            <div class="row">
+
+                <div th:each="petsitter, iterStat : ${petsitter}" class="col-md-4">
+                    <div class="card pet-sitter-card my-3">
+                        <div class="p-3">
+                            <img th:src="@{'/img/' + ${petsitter.imageUrl}}" alt="Pet Sitter Image"
+                                class="card-img-top">
+                        </div>
+                        <div class="card-body">
+                            <div class="text-center">
+                                <h4 class="card-title" th:text="${petsitter.name}">Pet Sitter Name:</h4>
+                            </div>
+                            <p class="card-text"><strong>Email:</strong> <span th:text="${petsitter.email}"></span></p>
+                            <p class="card-text"><strong>Role:</strong> <span th:text="${petsitter.role}"></span></p>
+                            <p class="card-text"><strong>Experience:</strong> <span
+                                    th:text="${petsitter.experience}"></span></p>
+                            <p class="card-text"><strong>Rates:</strong> <span th:text="${petsitter.rates}"></span></p>
+                            <p class="card-text"><strong>Contact Details:</strong> <span
+                                    th:text="${petsitter.contactDetails}"></span></p>
+                            <th:block th:if="${iterStat.count % 3 == 0}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+        </th:block>
+        </div>
+        </div>
+        </div>
+
+        </div>
+        </div>
+
+        <!-- Bootstrap JS and Popper.js scripts (required for Bootstrap) -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </section>
+</body>
+
+</html>

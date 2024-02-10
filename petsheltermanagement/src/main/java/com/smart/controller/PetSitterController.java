@@ -12,14 +12,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.smart.dao.BookingRepository;
-import com.smart.dao.PetRepository;
-import com.smart.dao.PetSitterRepository;
-import com.smart.dao.UserRepository;
+import com.smart.Repository.BookingRepository;
+import com.smart.Repository.PetSitterRepository;
 import com.smart.entites.Booking;
 import com.smart.entites.PetSitter;
-import com.smart.service.BookingService;
-import com.smart.service.PetSitterService;
 
 @Controller
 @RequestMapping("/pet_sitter")
@@ -27,15 +23,6 @@ public class PetSitterController {
 
 	@Autowired
 	private PetSitterRepository petSitterRepository;
-
-	@Autowired
-	private PetSitterService petSitterService;
-
-	@Autowired
-	private BookingService bookingService;
-
-	@Autowired
-	private PetRepository petRepository;
 
 	@Autowired
 	private BookingRepository bookingRepository;

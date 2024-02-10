@@ -6,7 +6,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import com.smart.dao.UserRepository;
+import com.smart.Repository.UserRepository;
 import com.smart.entites.User;
 
 @Service
