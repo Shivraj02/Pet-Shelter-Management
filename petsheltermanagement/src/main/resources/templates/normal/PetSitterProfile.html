@@ -8,10 +8,14 @@
     <!-- Bootstrap CSS link -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        /* Custom styles */
         .pet-sitter-card {
             margin: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+        }
+
+        .container .row .col-md-4 .card.pet-sitter-card {
+            border-radius: 3.25rem !important;
         }
 
         .pet-sitter-card img {
@@ -19,13 +23,6 @@
             border-top-left-radius: 8px;
             border-top-right-radius: 8px;
         }
-
-        /* .card-body {
-
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        } */
     </style>
 </head>
 
@@ -43,7 +40,7 @@
                             <img th:src="@{'/img/' + ${petsitter.imageUrl}}" alt="Pet Sitter Image"
                                 class="card-img-top">
                         </div>
-                        <div class="card-body">
+                        <div class="card-body ">
                             <div class="text-center">
                                 <h4 class="card-title" th:text="${petsitter.name}">Pet Sitter Name:</h4>
                             </div>
