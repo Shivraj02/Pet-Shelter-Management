@@ -217,15 +217,9 @@ public class UserController {
 		model.addAttribute("booking", new Booking());
 		model.addAttribute("user", user1);
 
-		// Load petSitters here, assuming you have a method to fetch them
 		List<PetSitter> petSitters = petSitterRepository.getAllPetSitters();
 		model.addAttribute("petSitters", petSitters);
 
-		// Initialize a PetSitter if necessary
-		PetSitter initialPetSitter = new PetSitter(); // You can customize this part
-		model.addAttribute("petSitter", initialPetSitter);
-
-		// Load userPets
 		List<Pet> userPets = petRepository.findPetsByUserId(user1.getId());
 		model.addAttribute("pets", userPets);
 
@@ -235,20 +229,18 @@ public class UserController {
 	@PostMapping("/create_booking")
 	public String createBooking(@ModelAttribute("booking") Booking booking, @AuthenticationPrincipal User user,
 			Principal principal) {
-		// Set the user and petSitter for the booking
+
 		booking.setUser(user);
 		booking.setPetSitter(booking.getPetSitter());
 		String username = principal.getName();
 		User userByUserName = this.userRepository.getUserByUserName(username);
 		booking.setUser(userByUserName);
-		// Set the status of the booking
+
 		booking.setStatus("Pending");
 
-		// Save the booking
 		bookingService.createBooking(booking);
 		bookingRepository.save(booking);
 
-		// Redirect to the user's booking page
 		return "redirect:/user/user_booking";
 	}
 
