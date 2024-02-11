@@ -59,13 +59,7 @@ public class PetSitterController {
 		System.out.println("id : " + petsitter.getId());
 
 		List<Booking> bookings = bookingRepository.findBookingByPetsitter(petsitter.getId());
-		List<Booking> pendingBookings = new ArrayList<>();
 
-		for (Booking booking : bookings) {
-			if ("Pending".equals(booking.getStatus())) {
-				pendingBookings.add(booking);
-			}
-		}
 		System.out.println("bookings" + bookings);
 		model.addAttribute("bookings", bookings);
 		return "petsitter/appointments";
@@ -90,6 +84,13 @@ public class PetSitterController {
 			bookingRepository.save(booking);
 		}
 		return "redirect:/pet_sitter/appointments";
+	}
+
+	@GetMapping("/edit_booking/{bookingId}")
+	public String editBooking(@PathVariable Long bookingId, Model model) {
+		Booking bookings = bookingRepository.getBookingById(bookingId);
+		model.addAttribute("bookings", bookings);
+		return "/petsitter/edit_booking";
 	}
 
 }

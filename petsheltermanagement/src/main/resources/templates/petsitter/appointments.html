@@ -25,7 +25,7 @@
 				</thead>
 				<tbody>
 					<!-- Iterate over user appointments -->
-					<tr th:each="booking : ${bookings}" th:if="${booking.status == 'Pending'}">
+					<tr th:each="booking : ${bookings}">
 						<td th:text="${booking.id}"></td>
 						<td th:text="${booking.user.name}"></td>
 
@@ -34,15 +34,23 @@
 						<td th:text="${booking.endTime}"></td>
 						<td th:text="${booking.status}"></td>
 						<td>
-							<a th:href="@{'/pet_sitter/accept_booking/' + ${booking.id}}"
-								class="btn btn-success accept-booking" data-booking-id="${booking.id}"
-								data-status="Approved" onclick="return confirmAction(this);">Accept
-							</a>
+							<div th:if="${booking.status == 'Pending'}">
+								<a th:href="@{'/pet_sitter/accept_booking/' + ${booking.id}}"
+									class="btn btn-success accept-booking" data-booking-id="${booking.id}"
+									data-status="Approved" onclick="return confirmAction(this);">Accept
+								</a>
 
-							<a th:href="@{'/pet_sitter/reject_booking/' + ${booking.id}}"
-								class="btn btn-danger reject-booking" data-booking-id="${booking.id}"
-								data-status="Denied" onclick="return confirmAction(this);">Reject
-							</a>
+								<a th:href="@{'/pet_sitter/reject_booking/' + ${booking.id}}"
+									class="btn btn-danger reject-booking" data-booking-id="${booking.id}"
+									data-status="Denied" onclick="return confirmAction(this);">Reject
+								</a>
+							</div>
+							<div th:if="${booking.status == 'Approved' || booking.status =='Denied'}">
+							
+								<a th:href="@{'/pet_sitter/edit_booking/' + ${booking.id}}" class="btn btn-warning" title="Edit">
+									<i class="fas fa-edit"></i>
+								</a>
+							</div>
 
 						</td>
 					</tr>
@@ -65,7 +73,7 @@
 					$.ajax({
 						type: "POST",  // Adjust HTTP method as needed
 						url: button.getAttribute("href"),
-						data: {status: statusToUpdate},
+						data: { status: statusToUpdate },
 						success: function (data) {
 							// Handle success
 							alert("Booking status updated to " + statusToUpdate);
