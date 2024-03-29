@@ -1,10 +1,13 @@
 package com.smart.controller;
 
 import java.security.Principal;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,10 +19,17 @@ import com.smart.Repository.BookingRepository;
 import com.smart.Repository.PetSitterRepository;
 import com.smart.entites.Booking;
 import com.smart.entites.PetSitter;
+import com.smart.service.EmailService;
 
 @Controller
 @RequestMapping("/pet_sitter")
 public class PetSitterController {
+
+	@Value("${spring.mail.body}")
+    private String UserRegistrationEmailBody; 
+
+	@Autowired
+	EmailService emailService;
 
 	@Autowired
 	private PetSitterRepository petSitterRepository;
@@ -73,6 +83,15 @@ public class PetSitterController {
 			booking.setStatus("Approved");
 			bookingRepository.save(booking);
 		}
+		String date = booking.getStartTime().toLocalDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+		String dynamicBody = String.format(UserRegistrationEmailBody,date,booking.getStartTime().toLocalTime());
+		try{
+		emailService.sendEmail("perfectman104@gmail.com", "Appointment details",dynamicBody);
+		}catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+		}
+		
 		return "redirect:/pet_sitter/appointments";
 	}
 

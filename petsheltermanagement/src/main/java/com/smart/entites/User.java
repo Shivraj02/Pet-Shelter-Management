@@ -23,7 +23,7 @@ public class User {
 	
 	@Id  //primary key
 	@GeneratedValue(strategy = GenerationType.AUTO)// auto genrate no.s
-	private int id;
+	private int id;  
 	
 	
 	

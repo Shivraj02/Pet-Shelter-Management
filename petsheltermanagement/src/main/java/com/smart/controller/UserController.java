@@ -227,21 +227,42 @@ public class UserController {
 	}
 
 	@PostMapping("/create_booking")
-	public String createBooking(@ModelAttribute("booking") Booking booking, @AuthenticationPrincipal User user,
-			Principal principal) {
+	public String createBooking(@Valid @ModelAttribute("booking") Booking booking, BindingResult bindingResult,
+			@AuthenticationPrincipal User user, Principal principal, Model model) {
 
-		booking.setUser(user);
-		booking.setPetSitter(booking.getPetSitter());
 		String username = principal.getName();
 		User userByUserName = this.userRepository.getUserByUserName(username);
-		booking.setUser(userByUserName);
+		if (bindingResult.hasErrors()) {
+			// If validation fails, return to the form with validation errors
+			model.addAttribute("user", userByUserName); // Add user to the model if needed
+			model.addAttribute("petSitters", petSitterRepository.getAllPetSitters()); // Add pet sitters to the model if
+																						// needed
+			model.addAttribute("pets", petRepository.findPetsByUserId(userByUserName.getId())); // Add pets to the model
+																								// if needed
+			return "normal/create_booking";
+		}
 
-		booking.setStatus("Pending");
+		try {
+			// Check if end time is before start time
+			if (booking.getEndTime() != null && booking.getStartTime().isAfter(booking.getEndTime())) {
+				throw new IllegalArgumentException("End time must be after start time");
+			}
 
-		bookingService.createBooking(booking);
-		bookingRepository.save(booking);
-
-		return "redirect:/user/user_booking";
+			// Proceed with creating and saving the booking
+			booking.setUser(userByUserName);
+			booking.setStatus("Pending");
+			bookingService.createBooking(booking);
+			bookingRepository.save(booking);
+			return "redirect:/user/user_booking";
+		} catch (IllegalArgumentException e) {
+			// If an IllegalArgumentException is caught, add a custom error message
+			bindingResult.rejectValue("endTime", "booking.endTime", "End time must be after start time");
+			model.addAttribute("user", userByUserName); // Add user to the model if needed
+			model.addAttribute("petSitters", petSitterRepository.getAllPetSitters()); // Add pet sitters to the model if
+																						// needed
+			model.addAttribute("pets", petRepository.findPetsByUserId(userByUserName.getId())); // Add pets to the model if needed
+			return "normal/create_booking";
+		}
 	}
 
 	@GetMapping("/delete_booking/{bookingId}")

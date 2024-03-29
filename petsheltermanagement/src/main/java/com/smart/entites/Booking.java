@@ -8,32 +8,29 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.FutureOrPresent;
 
 @Entity
 public class Booking {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
-    private String status;
-    
-    
-    
-    @ManyToOne
-    @JoinColumn(name = "pet_sitter_id")
-    private PetSitter petSitter;
-    
-    
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	@FutureOrPresent
+	private LocalDateTime startTime;
 
-	
+	private LocalDateTime endTime;
+	private String status;
 
 	@ManyToOne
-    private User user;  
-    
-    @ManyToOne
-    private Pet pet;
+	@JoinColumn(name = "pet_sitter_id")
+	private PetSitter petSitter;
+
+	@ManyToOne
+	private User user;
+
+	@ManyToOne
+	private Pet pet;
 
 	public Long getId() {
 		return id;
@@ -56,6 +53,9 @@ public class Booking {
 	}
 
 	public void setEndTime(LocalDateTime endTime) {
+		if (startTime != null && endTime != null && endTime.isBefore(startTime)) {
+            throw new IllegalArgumentException("End time must be after start time");
+        }
 		this.endTime = endTime;
 	}
 
@@ -83,7 +83,6 @@ public class Booking {
 		this.pet = pet;
 	}
 
-	
 	public Booking(Long id, LocalDateTime startTime, LocalDateTime endTime, String status, PetSitter petSitter,
 			User user, Pet pet, String petSitterName, int petSitterId, Long petSitterId2) {
 		super();
@@ -92,8 +91,7 @@ public class Booking {
 		this.endTime = endTime;
 		this.status = status;
 		this.petSitter = petSitter;
-		
-		
+
 		this.user = user;
 		this.pet = pet;
 	}
@@ -117,14 +115,4 @@ public class Booking {
 		// TODO Auto-generated constructor stub
 	}
 
-	
-
-	
-	
-
-	
-	
-    
-    
 }
-

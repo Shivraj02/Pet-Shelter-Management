@@ -21,27 +21,26 @@
                 <div class="form-group">
                     <label for="startTime">Start Time:</label>
                     <input type="datetime-local" class="form-control" id="startTime" th:field="*{startTime}" required="required" />
+                    <!-- Display validation error message -->
+                    <small class="text-danger" th:if="${#fields.hasErrors('startTime')}" th:errors="*{startTime}"></small>
                 </div>
 
                 <div class="form-group">
                     <label for="endTime">End Time:</label>
                     <input type="datetime-local" class="form-control" id="endTime" th:field="*{endTime}" required="required" />
+                    <!-- Display validation error message -->
+                    <small class="text-danger" th:if="${#fields.hasErrors('endTime')}" th:errors="*{endTime}"></small>
                 </div>
 
                 <div class="form-group">
-					<label for="petSitter">Select Pet Sitter:</label>
-					<select class="form-control" id="petSitter" name="petSitter.id" required="required">
-						<option value="">Select a Pet Sitter</option>
-						<option th:each="petSitter : ${petSitters}" th:value="${petSitter.id}"
-							th:text="${petSitter.name}"></option>
-					</select>
-
-
-				</div>
-
+                    <label for="petSitter">Select Pet Sitter:</label>
+                    <select class="form-control" id="petSitter" name="petSitter.id" required="required">
+                        <option value="">Select a Pet Sitter</option>
+                        <option th:each="petSitter : ${petSitters}" th:value="${petSitter.id}" th:text="${petSitter.name}"></option>
+                    </select>
+                </div>
 
                 <input type="hidden" id="user" name="user.id" th:value="${user.id}" />
-
 
                 <div class="text-center">
                     <button type="submit" class="btn bg-primary btn-lg text-white">Create Booking</button>
